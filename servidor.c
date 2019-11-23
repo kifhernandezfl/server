@@ -75,7 +75,7 @@ int main()
 		}
 
 		//printf("Atendiendo al cliente\n");
-		char *msg;
+		char* msg = malloc(2);
 
 		send(connect,"Menu Principal", 14, 0);
 		send(connect,"\n", 1, 0);
@@ -90,10 +90,15 @@ int main()
 		send(connect,"5. Salir", 8, 0);
 		send(connect,"\n", 1, 0);
 		send(connect,"Ingrese una opcion:", 20, 0);
-		recv(connect, msg, 2, 0);
-		send(connect, &msg, strlen(msg), 0);
+		int msn = recv(connect, msg, 1, 0);
+		send(connect, msg, strlen(msg), 0);
 
-		msg = NULL;
+		msg[msn] = '\0';
+
+		printf("Me llegaron %d con %s", msn, msg);
+
+		free(msg);
+		
 		close(connect); 
 
 	}
