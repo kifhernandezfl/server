@@ -75,17 +75,25 @@ int main()
 		}
 
 		//printf("Atendiendo al cliente\n");
-		//char* msg = "hola";
+		char *msg;
 
 		send(connect,"Menu Principal", 14, 0);
+		send(connect,"\n", 1, 0);
 		send(connect,"1. Ingresar Registro", 20, 0);
+		send(connect,"\n", 1, 0);
 		send(connect,"2. Ver Registro", 15, 0);
+		send(connect,"\n", 1, 0);
 		send(connect,"3. Borrar Registro", 18, 0);
+		send(connect,"\n", 1, 0);
 		send(connect,"4. Buscar Registro", 18, 0);
+		send(connect,"\n", 1, 0);
 		send(connect,"5. Salir", 8, 0);
-		send(connect,"Ingrese una opcion: ", 20, 0);
+		send(connect,"\n", 1, 0);
+		send(connect,"Ingrese una opcion:", 20, 0);
+		recv(connect, msg, 2, 0);
+		send(connect, &msg, strlen(msg), 0);
 
-		//msg = NULL;
+		msg = NULL;
 		close(connect); 
 
 	}
